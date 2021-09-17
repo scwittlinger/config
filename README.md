@@ -1,2 +1,2 @@
-# config
+# configManager
 Manages configuration for golang services

@@ -1,19 +1,18 @@
-package config
+package configManager
 
 import (
-	"fmt"
 	"log"
+	"os"
 	"reflect"
 	"strconv"
+	"strings"
 )
 
-type Config struct {
-	SERVICE_NAME string
-}
-
-func New() *Config {
-	config := &Config{}
-	v := reflect.ValueOf(*c)
+// New initializes the struct passed into it as a config
+// each field of the struct passed to New() should be named exclusively using uppercase letters and underscores
+// there should be an environment variable with the same exact name as each field, which can be cast to the type of that field
+func New(config *interface{}) {
+	v := reflect.ValueOf(*config)
 	fieldCount := v.NumField()
 
 	for i := 0; i < fieldCount; i++ {
@@ -31,7 +30,6 @@ func New() *Config {
 			log.Fatalf("error building config -- %s is not of an acceptable type", v.Field(i).Type().Name())
 		}
 	}
-	return config
 }
 
 func getBoolFromEnv(key string) bool {
