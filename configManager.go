@@ -40,6 +40,7 @@ func getBoolFromEnv(key string) bool {
 		return false
 	}
 	log.Fatalf("error building config -- <%s> [key %s] is not an acceptable bool value", val, key)
+	return false // needed to satisfy compiler, even though this code is unreachable
 }
 
 func getIntFromEnv(key string) int {
