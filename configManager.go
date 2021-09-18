@@ -33,7 +33,7 @@ func New(config *interface{}) {
 }
 
 func getBoolFromEnv(key string) bool {
-	val := strings.ToLower(os.GetEnv(key))
+	val := strings.ToLower(os.Getenv(key))
 	if val == "true" {
 		return true
 	} else if val == "false" {
@@ -44,8 +44,8 @@ func getBoolFromEnv(key string) bool {
 }
 
 func getIntFromEnv(key string) int {
-	val := os.GetEnv(key)
-	intVal, err := strconv.AtoI(val)
+	val := os.Getenv(key)
+	intVal, err := strconv.Atoi(val)
 	if err != nil {
 		log.Fatalf("error building config -- cannot convert <%s> [key %s] to type int\nOriginal error: %s", val, key, err.Error())
 	}
@@ -53,7 +53,7 @@ func getIntFromEnv(key string) int {
 }
 
 func getStringFromEnv(key string) string {
-	val := os.GetEnv(key)
+	val := os.Getenv(key)
 	if val == "" {
 		log.Fatalf("error building config -- empty value for key %s", key)
 	}
